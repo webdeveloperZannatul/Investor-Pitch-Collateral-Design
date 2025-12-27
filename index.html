@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Pitch Collateral Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --deep-navy: #0A2342;
+            --platinum: #E5E7EB;
+            --slate-blue: #4B5563;
+            --light-gray: #F9FAFB;
+            --electric-blue: #3B82F6;
+            --emerald: #10B981;
+            --crimson: #EF4444;
+            --white: #FFFFFF;
+            --gradient-primary: linear-gradient(135deg, var(--deep-navy) 0%, #1e3a5f 100%);
+            --gradient-accent: linear-gradient(135deg, var(--electric-blue) 0%, #2563eb 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-gray);
+            color: var(--deep-navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--slate-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--electric-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: brightness(0.3);
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 35, 66, 0.85) 0%, rgba(10, 35, 66, 0.7) 50%, rgba(59, 130, 246, 0.3) 100%);
+            z-index: -1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--electric-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--deep-navy);
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--electric-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+        }
+
+        .section-header p {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section with Background Image */
+        .section-with-bg {
+            position: relative;
+            padding: 6rem 2rem;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .section-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Brand Guidelines Section */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .guideline-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guideline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .guideline-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .guideline-card i {
+            color: var(--electric-blue);
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-swatch {
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-box {
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-box::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: white;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .color-swatch:hover .color-box::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .color-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--slate-blue);
+        }
+
+        .color-code {
+            font-size: 0.8rem;
+            color: var(--slate-blue);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Typography */
+        .typography-showcase {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .type-sample {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 4px solid var(--electric-blue);
+            background: var(--light-gray);
+        }
+
+        .type-label {
+            font-size: 0.85rem;
+            color: var(--slate-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Logo Usage */
+        .logo-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .logo-variant {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .logo-variant:hover {
+            background: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo-display {
+            width: 120px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .logo-display.primary {
+            background: white;
+        }
+
+        .logo-display.monochrome {
+            background: var(--deep-navy);
+        }
+
+        .logo-display.reversed {
+            background: var(--electric-blue);
+        }
+
+        /* Icon Style */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .icon-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .icon-item:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+        }
+
+        .icon-item i {
+            font-size: 2rem;
+            color: var(--electric-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-label {
+            font-size: 0.75rem;
+            color: var(--slate-blue);
+        }
+
+        /* Brochure Section */
+        .brochure-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .brochure-nav {
+            display: flex;
+            background: var(--deep-navy);
+            padding: 1rem;
+            gap: 0.5rem;
+        }
+
+        .brochure-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .brochure-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .brochure-btn.active {
+            background: var(--electric-blue);
+        }
+
+        .brochure-content {
+            padding: 3rem;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .brochure-page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .brochure-page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Feature Cards with Images */
+        .feature-card {
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature-card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+            border-radius: 8px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+
+        .feature-desc {
+            color: var(--slate-blue);
+            line-height: 1.6;
+        }
+
+        /* Pitch Deck */
+        .deck-container {
+            background: var(--deep-navy);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .deck-slide {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            min-height: 500px;
+            display: none;
+            position: relative;
+        }
+
+        .deck-slide.active {
+            display: block;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .deck-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .deck-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .deck-btn {
+            padding: 0.5rem 1rem;
+            background: var(--electric-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .deck-btn:hover {
+            background: #2563eb;
+        }
+
+        .deck-btn:disabled {
+            background: var(--slate-blue);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Slide Content */
+        .slide-header {
+            margin-bottom: 2rem;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-subtitle {
+            color: var(--slate-blue);
+            font-size: 1.1rem;
+        }
+
+        .slide-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-top: 2rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            gap: 1rem;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--gradient-accent);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: var(--slate-blue);
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--platinum);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--electric-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--electric-blue);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-title {
+            color: var(--electric-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-bio {
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Showcase */
+        .portfolio-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+
+        .portfolio-desc {
+            color: var(--slate-blue);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--platinum);
+        }
+
+        .portfolio-stat {
+            text-align: center;
+        }
+
+        .portfolio-stat-value {
+            font-weight: 700;
+            color: var(--electric-blue);
+            display: block;
+        }
+
+        .portfolio-stat-label {
+            font-size: 0.8rem;
+            color: var(--slate-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--platinum);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--electric-blue);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--electric-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .deck-container {
+                padding: 1rem;
+            }
+
+            .deck-slide {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--deep-navy);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toast-icon {
+            color: var(--emerald);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">N</div>
+            <h2>Nexus Capital</h2>
+            <p>Visual Identity System</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">N</div>
+                <span>Nexus Capital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#guidelines">Brand Guidelines</a></li>
+                <li><a href="#brochure">Brochure</a></li>
+                <li><a href="#pitchdeck">Pitch Deck</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Investor Visual Identity System</h1>
+            <p>A comprehensive design system for Nexus Capital, connecting innovation with strategic capital through professional, modern visual communication.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('guidelines')">
+                    <i class="fas fa-book"></i> View Guidelines
+                </button>
+                <button class="btn btn-secondary" onclick="downloadAssets()">
+                    <i class="fas fa-download"></i> Download Assets
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">$500M</span>
+                    <span class="hero-stat-label">AUM</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">45</span>
+                    <span class="hero-stat-label">Portfolio</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">3.2x</span>
+                    <span class="hero-stat-label">Avg ROI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Guidelines Section with Background -->
+    <section class="section-with-bg" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="section-overlay"></div>
+        <div class="section-content">
+            <div class="section-header">
+                <h2>Brand Guidelines</h2>
+                <p>A cohesive visual identity system designed for clarity, credibility, and strategic impact in investor communications.</p>
+            </div>
+
+            <div class="guidelines-grid">
+                <!-- Logo Usage -->
+                <div class="guideline-card">
+                    <h3><i class="fas fa-certificate"></i> Logo System</h3>
+                    <div class="logo-showcase">
+                        <div class="logo-variant">
+                            <div class="logo-display primary">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 30px; background: var(--gradient-primary); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">N</div>
+                                    <span style="font-weight: 700; color: var(--deep-navy);">Nexus</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Primary</p>
+                        </div>
+                        <div class="logo-variant">
+                            <div class="logo-display monochrome">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 30px; background: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--deep-navy); font-weight: bold;">N</div>
+                                    <span style="font-weight: 700; color: white;">Nexus</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Monochrome</p>
+                        </div>
+                        <div class="logo-variant">
+                            <div class="logo-display reversed">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div style="width: 30px; height: 30px; background: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--electric-blue); font-weight: bold;">N</div>
+                                    <span style="font-weight: 700; color: white;">Nexus</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Reversed</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--slate-blue);">
+                        <strong>Clear Space:</strong> Minimum height of "X"<br>
+                        <strong>Minimum Size:</strong> 30px digital, 0.5" print
+                    </p>
+                </div>
+
+                <!-- Color Palette -->
+                <div class="guideline-card">
+                    <h3><i class="fas fa-palette"></i> Color Palette</h3>
+                    <div class="color-palette">
+                        <div class="color-swatch" onclick="copyColor('#0A2342')">
+                            <div class="color-box" style="background: #0A2342;"></div>
+                            <div class="color-label">Deep Navy</div>
+                            <div class="color-code">#0A2342</div>
+                        </div>
+                        <div class="color-swatch" onclick="copyColor('#E5E7EB')">
+                            <div class="color-box" style="background: #E5E7EB;"></div>
+                            <div class="color-label">Platinum</div>
+                            <div class="color-code">#E5E7EB</div>
+                        </div>
+                        <div class="color-swatch" onclick="copyColor('#3B82F6')">
+                            <div class="color-box" style="background: #3B82F6;"></div>
+                            <div class="color-label">Electric Blue</div>
+                            <div class="color-code">#3B82F6</div>
+                        </div>
+                        <div class="color-swatch" onclick="copyColor('#10B981')">
+                            <div class="color-box" style="background: #10B981;"></div>
+                            <div class="color-label">Emerald</div>
+                            <div class="color-code">#10B981</div>
+                        </div>
+                        <div class="color-swatch" onclick="copyColor('#EF4444')">
+                            <div class="color-box" style="background: #EF4444;"></div>
+                            <div class="color-label">Crimson</div>
+                            <div class="color-code">#EF4444</div>
+                        </div>
+                        <div class="color-swatch" onclick="copyColor('#4B5563')">
+                            <div class="color-box" style="background: #4B5563;"></div>
+                            <div class="color-label">Slate Blue</div>
+                            <div class="color-code">#4B5563</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typography -->
+                <div class="guideline-card">
+                    <h3><i class="fas fa-font"></i> Typography</h3>
+                    <div class="typography-showcase">
+                        <div class="type-sample">
+                            <div class="type-label">Headline</div>
+                            <div style="font-size: 2rem; font-weight: 700;">Connecting Innovation with Capital</div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Subhead</div>
+                            <div style="font-size: 1.25rem; font-weight: 600;">Building the Future of Investment</div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Body Text</div>
+                            <div style="font-size: 1rem; font-weight: 400;">Nexus Capital bridges the gap between innovative startups and strategic investors, creating opportunities for growth and success in the modern economy.</div>
+                        </div>
+                        <div class="type-sample">
+                            <div class="type-label">Data Labels</div>
+                            <div style="font-size: 0.875rem; font-weight: 500;">Q4 2024 Revenue: $2.5M</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Icon Style -->
+                <div class="guideline-card">
+                    <h3><i class="fas fa-icons"></i> Icon System</h3>
+                    <div class="icon-grid">
+                        <div class="icon-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="icon-label">Growth</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="icon-label">Security</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-network-wired"></i>
+                            <div class="icon-label">Network</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-rocket"></i>
+                            <div class="icon-label">Launch</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-handshake"></i>
+                            <div class="icon-label">Partnership</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <div class="icon-label">Innovation</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-trophy"></i>
+                            <div class="icon-label">Success</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-globe"></i>
+                            <div class="icon-label">Global</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brochure Section -->
+    <section id="brochure" class="container">
+        <div class="section-header">
+            <h2>Investor Brochure</h2>
+            <p>Digital and print-ready brochure design showcasing investment opportunities and value propositions.</p>
+        </div>
+
+        <div class="brochure-container">
+            <div class="brochure-nav">
+                <button class="brochure-btn active" onclick="showBrochurePage(0)">Overview</button>
+                <button class="brochure-btn" onclick="showBrochurePage(1)">Investment Thesis</button>
+                <button class="brochure-btn" onclick="showBrochurePage(2)">Portfolio</button>
+                <button class="brochure-btn" onclick="showBrochurePage(3)">Contact</button>
+            </div>
+
+            <div class="brochure-content">
+                <!-- Page 1: Overview -->
+                <div class="brochure-page active">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--deep-navy);">Nexus Capital</h2>
+                    <p style="font-size: 1.25rem; color: var(--slate-blue); margin-bottom: 2rem;">Connecting Innovation with Strategic Capital</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="feature-title">Mission</h3>
+                            <p class="feature-desc">Empowering breakthrough technologies through strategic capital allocation and expert guidance.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="feature-title">Vision</h3>
+                            <p class="feature-desc">Building the premier platform for connecting visionary entrepreneurs with sophisticated investors.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h3 class="feature-title">Values</h3>
+                            <p class="feature-desc">Integrity, Innovation, Impact - The foundation of everything we do at Nexus Capital.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-container" style="margin-top: 3rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--deep-navy);">Key Metrics</h3>
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 80%;">
+                                <div class="bar-value">$500M</div>
+                                <div class="bar-label">AUM</div>
+                            </div>
+                            <div class="bar" style="height: 60%;">
+                                <div class="bar-value">45</div>
+                                <div class="bar-label">Portfolio</div>
+                            </div>
+                            <div class="bar" style="height: 90%;">
+                                <div class="bar-value">3.2x</div>
+                                <div class="bar-label">ROI</div>
+                            </div>
+                            <div class="bar" style="height: 70%;">
+                                <div class="bar-value">12</div>
+                                <div class="bar-label">Exits</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2: Investment Thesis -->
+                <div class="brochure-page">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--deep-navy);">Investment Thesis</h2>
+                    <p style="color: var(--slate-blue); margin-bottom: 2rem;">Targeting transformative technologies in high-growth sectors</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <div style="width: 100px; height: 100px; border-radius: 8px; margin: 0 auto 1rem; background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h4 style="margin-bottom: 0.5rem;">AI & ML</h4>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Revolutionary artificial intelligence solutions</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <div style="width: 100px; height: 100px; border-radius: 8px; margin: 0 auto 1rem; background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h4 style="margin-bottom: 0.5rem;">Biotech</h4>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Life sciences and medical breakthroughs</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <div style="width: 100px; height: 100px; border-radius: 8px; margin: 0 auto 1rem; background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h4 style="margin-bottom: 0.5rem;">CleanTech</h4>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Sustainable energy and environmental tech</p>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <div style="width: 100px; height: 100px; border-radius: 8px; margin: 0 auto 1rem; background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h4 style="margin-bottom: 0.5rem;">Blockchain</h4>
+                            <p style="font-size: 0.9rem; color: var(--slate-blue);">Decentralized finance and Web3</p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--gradient-primary); color: white; padding: 2rem; border-radius: 8px; margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Our Approach</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-check-circle" style="color: var(--emerald);"></i>
+                                <span>Rigorous due diligence process</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-check-circle" style="color: var(--emerald);"></i>
+                                <span>Hands-on portfolio support</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-check-circle" style="color: var(--emerald);"></i>
+                                <span>Strategic partnerships and network access</span>
+                            </li>
+                            <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                <i class="fas fa-check-circle" style="color: var(--emerald);"></i>
+                                <span>Long-term value creation focus</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Page 3: Portfolio -->
+                <div class="brochure-page">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--deep-navy);">Portfolio Highlights</h2>
+                    <p style="color: var(--slate-blue); margin-bottom: 2rem;">Success stories from our investment portfolio</p>
+                    
+                    <div class="portfolio-showcase">
+                        <div class="portfolio-item">
+                            <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">NeuralTech AI</h3>
+                                <p class="portfolio-desc">Series A lead investment in breakthrough AI platform. 5x return in 18 months.</p>
+                                <div class="portfolio-stats">
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">5x</span>
+                                        <span class="portfolio-stat-label">ROI</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">2021</span>
+                                        <span class="portfolio-stat-label">Year</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">$25M</span>
+                                        <span class="portfolio-stat-label">Value</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">GreenEnergy Solutions</h3>
+                                <p class="portfolio-desc">Strategic investment in renewable energy storage technology. Now industry leader.</p>
+                                <div class="portfolio-stats">
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">8x</span>
+                                        <span class="portfolio-stat-label">ROI</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">2022</span>
+                                        <span class="portfolio-stat-label">Year</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">$45M</span>
+                                        <span class="portfolio-stat-label">Value</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">MediCore Bio</h3>
+                                <p class="portfolio-desc">Early-stage biotech investment in personalized medicine solutions.</p>
+                                <div class="portfolio-stats">
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">3x</span>
+                                        <span class="portfolio-stat-label">ROI</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">2023</span>
+                                        <span class="portfolio-stat-label">Year</span>
+                                    </div>
+                                    <div class="portfolio-stat">
+                                        <span class="portfolio-stat-value">$18M</span>
+                                        <span class="portfolio-stat-label">Value</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Contact -->
+                <div class="brochure-page">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--deep-navy);">Get in Touch</h2>
+                    <p style="color: var(--slate-blue); margin-bottom: 2rem;">Ready to explore investment opportunities?</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--electric-blue); margin-bottom: 1rem;"></i>
+                            <h4 style="margin-bottom: 0.5rem;">Email</h4>
+                            <p style="color: var(--slate-blue);">invest@nexuscapital.com</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <i class="fas fa-phone" style="font-size: 1.5rem; color: var(--electric-blue); margin-bottom: 1rem;"></i>
+                            <h4 style="margin-bottom: 0.5rem;">Phone</h4>
+                            <p style="color: var(--slate-blue);">+1 (555) 123-4567</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: var(--light-gray); border-radius: 8px;">
+                            <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: var(--electric-blue); margin-bottom: 1rem;"></i>
+                            <h4 style="margin-bottom: 0.5rem;">Office</h4>
+                            <p style="color: var(--slate-blue);">123 Financial District<br>San Francisco, CA 94105</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <button class="btn btn-primary" onclick="showToast('Thank you for your interest! We\'ll be in touch soon.')">
+                            <i class="fas fa-paper-plane"></i> Schedule a Meeting
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pitch Deck Section -->
+    <section id="pitchdeck" class="container">
+        <div class="section-header">
+            <h2>Interactive Pitch Deck</h2>
+            <p>Navigate through our investor presentation with smooth transitions and professional design.</p>
+        </div>
+
+        <div class="deck-container">
+            <div class="deck-nav">
+                <div class="deck-controls">
+                    <button class="deck-btn" onclick="previousSlide()" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button class="deck-btn" onclick="nextSlide()" id="nextBtn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slide-counter">
+                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">12</span>
+                </div>
+            </div>
+
+            <div class="deck-slide active">
+                <div class="slide-header">
+                    <h1 class="slide-title">Nexus Capital</h1>
+                    <p class="slide-subtitle">Connecting Innovation with Strategic Capital</p>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <div style="width: 150px; height: 150px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 4rem; color: white; font-weight: bold;">N</div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">The Problem</h1>
+                    <p class="slide-subtitle">Bridging the Innovation Funding Gap</p>
+                </div>
+                <div class="slide-content">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://i.postimg.cc/Cxq9gy28/Access-Gap.avif?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3 class="feature-title">Access Gap</h3>
+                            <p class="feature-desc">85% of innovative startups struggle to secure institutional funding</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="feature-title">Time Inefficient</h3>
+                            <p class="feature-desc">Average fundraising cycle exceeds 6 months with low success rates</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="feature-title">Discovery Challenge</h3>
+                            <p class="feature-desc">Investors miss high-potential opportunities due to fragmented deal flow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Our Solution</h1>
+                    <p class="slide-subtitle">Nexus Capital Platform</p>
+                </div>
+                <div class="slide-content">
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="display: inline-block; padding: 2rem; background: var(--light-gray); border-radius: 12px;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                                <div style="text-align: center;">
+                                    <div style="width: 80px; height: 80px; background: var(--gradient-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 0.5rem;">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <p style="font-weight: 600;">Startups</p>
+                                </div>
+                                <div style="font-size: 2rem; color: var(--electric-blue);">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="width: 80px; height: 80px; background: var(--gradient-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin: 0 auto 0.5rem;">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <p style="font-weight: 600;">Investors</p>
+                                </div>
+                            </div>
+                            <div style="width: 200px; height: 60px; background: var(--gradient-primary); border-radius: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.2rem; margin: 0 auto;">
+                                Nexus Platform
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3 style="color: var(--electric-blue); margin-bottom: 0.5rem;">✓ Smart Matching</h3>
+                            <p style="color: var(--slate-blue);">AI-powered investor-startup compatibility</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3 style="color: var(--electric-blue); margin-bottom: 0.5rem;">✓ Due Diligence</h3>
+                            <p style="color: var(--slate-blue);">Streamlined verification and assessment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Market Opportunity</h1>
+                    <p class="slide-subtitle">Massive Growth in Alternative Investments</p>
+                </div>
+                <div class="slide-content">
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 40%; background: var(--emerald);">
+                                <div class="bar-value">$300B</div>
+                                <div class="bar-label">2020</div>
+                            </div>
+                            <div class="bar" style="height: 55%; background: var(--emerald);">
+                                <div class="bar-value">$450B</div>
+                                <div class="bar-label">2021</div>
+                            </div>
+                            <div class="bar" style="height: 70%; background: var(--emerald);">
+                                <div class="bar-value">$600B</div>
+                                <div class="bar-label">2022</div>
+                            </div>
+                            <div class="bar" style="height: 85%; background: var(--emerald);">
+                                <div class="bar-value">$750B</div>
+                                <div class="bar-label">2023</div>
+                            </div>
+                            <div class="bar" style="height: 100%; background: var(--emerald);">
+                                <div class="bar-value">$1T</div>
+                                <div class="bar-label">2024E</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 2rem; color: var(--slate-blue);">Global Venture Capital Market Size</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Business Model</h1>
+                    <p class="slide-subtitle">Multiple Revenue Streams</p>
+                </div>
+                <div class="slide-content">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1554224154-260325c05993?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <h3 class="feature-title">Success Fees</h3>
+                            <p class="feature-desc">2-5% on successful funding rounds</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3 class="feature-title">Subscription</h3>
+                            <p class="feature-desc">Premium platform access for investors</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="feature-title">Carry</h3>
+                            <p class="feature-desc">20% carry on fund investments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Traction</h1>
+                    <p class="slide-subtitle">Impressive Growth & Milestones</p>
+                </div>
+                <div class="slide-content">
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 30%;">
+                                <div class="bar-value">50</div>
+                                <div class="bar-label">Q1</div>
+                            </div>
+                            <div class="bar" style="height: 45%;">
+                                <div class="bar-value">120</div>
+                                <div class="bar-label">Q2</div>
+                            </div>
+                            <div class="bar" style="height: 65%;">
+                                <div class="bar-value">280</div>
+                                <div class="bar-label">Q3</div>
+                            </div>
+                            <div class="bar" style="height: 85%;">
+                                <div class="bar-value">450</div>
+                                <div class="bar-label">Q4</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 2rem; color: var(--slate-blue);">Active Deals by Quarter</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Competitive Landscape</h1>
+                    <p class="slide-subtitle">Positioned for Success</p>
+                </div>
+                <div class="slide-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                        <div style="position: relative;">
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: var(--platinum);"></div>
+                            <div style="position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--platinum);"></div>
+                            <div style="position: absolute; top: 0; left: 0; padding: 0.5rem; font-size: 0.85rem; color: var(--slate-blue);">Low Tech</div>
+                            <div style="position: absolute; top: 0; right: 0; padding: 0.5rem; font-size: 0.85rem; color: var(--slate-blue);">High Tech</div>
+                            <div style="position: absolute; bottom: 0; left: 0; padding: 0.5rem; font-size: 0.85rem; color: var(--slate-blue);">Niche Market</div>
+                            <div style="position: absolute; bottom: 0; right: 0; padding: 0.5rem; font-size: 0.85rem; color: var(--slate-blue);">Broad Market</div>
+                            
+                            <div style="position: absolute; top: 75%; left: 25%; padding: 0.5rem; background: white; border: 1px solid var(--platinum); border-radius: 4px; font-size: 0.85rem;">Competitor A</div>
+                            <div style="position: absolute; top: 25%; left: 75%; padding: 0.5rem; background: white; border: 1px solid var(--platinum); border-radius: 4px; font-size: 0.85rem;">Competitor B</div>
+                            <div style="position: absolute; top: 25%; left: 25%; padding: 0.5rem; background: white; border: 1px solid var(--platinum); border-radius: 4px; font-size: 0.85rem;">Competitor C</div>
+                            
+                            <div style="position: absolute; top: 25%; left: 75%; transform: translateX(-50%); padding: 0.75rem 1rem; background: var(--electric-blue); color: white; border-radius: 4px; font-weight: 600; font-size: 0.9rem; box-shadow: var(--shadow-md);">Nexus Capital</div>
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Key Differentiators</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="fas fa-check" style="color: var(--emerald);"></i>
+                                    <span>Proprietary AI matching algorithm</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="fas fa-check" style="color: var(--emerald);"></i>
+                                    <span>End-to-end deal management</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="fas fa-check" style="color: var(--emerald);"></i>
+                                    <span>Global investor network</span>
+                                </li>
+                                <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;">
+                                    <i class="fas fa-check" style="color: var(--emerald);"></i>
+                                    <span>Post-investment support</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Go-to-Market Strategy</h1>
+                    <p class="slide-subtitle">Strategic Market Entry</p>
+                </div>
+                <div class="slide-content">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Target Startups</h3>
+                            <p class="feature-desc">Series A-B tech companies with proven traction</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3 class="feature-title">Target Investors</h3>
+                            <p class="feature-desc">VCs, family offices, and institutional funds</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="feature-title">Marketing</h3>
+                            <p class="feature-desc">Industry events, partnerships, and digital outreach</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-image" style="background-image: url('https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h3 class="feature-title">Expansion</h3>
+                            <p class="feature-desc">Phase 1: US | Phase 2: Europe | Phase 3: Asia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Team</h1>
+                    <p class="slide-subtitle">World-Class Leadership</p>
+                </div>
+                <div class="slide-content">
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h3 class="team-name">John Davidson</h3>
+                            <p class="team-title">CEO & Founder</p>
+                            <p class="team-bio">Former Goldman Sachs MD, 20+ years in VC</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h3 class="team-name">Sarah Chen</h3>
+                            <p class="team-title">CTO</p>
+                            <p class="team-bio">Ex-Google AI lead, PhD in Machine Learning</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h3 class="team-name">Michael Roberts</h3>
+                            <p class="team-title">CFO</p>
+                            <p class="team-bio">Former Blackrock Partner, CPA</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-member-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                            <h3 class="team-name">Emily Johnson</h3>
+                            <p class="team-title">COO</p>
+                            <p class="team-bio">Ex-McKinsey, Operations expert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Financial Projections</h1>
+                    <p class="slide-subtitle">5-Year Growth Forecast</p>
+                </div>
+                <div class="slide-content">
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 20%;">
+                                <div class="bar-value">$10M</div>
+                                <div class="bar-label">2024</div>
+                            </div>
+                            <div class="bar" style="height: 35%;">
+                                <div class="bar-value">$25M</div>
+                                <div class="bar-label">2025</div>
+                            </div>
+                            <div class="bar" style="height: 55%;">
+                                <div class="bar-value">$50M</div>
+                                <div class="bar-label">2026</div>
+                            </div>
+                            <div class="bar" style="height: 75%;">
+                                <div class="bar-value">$85M</div>
+                                <div class="bar-label">2027</div>
+                            </div>
+                            <div class="bar" style="height: 100%;">
+                                <div class="bar-value">$150M</div>
+                                <div class="bar-label">2028</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 2rem; color: var(--slate-blue);">Projected Revenue (Millions USD)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Investment Opportunity</h1>
+                    <p class="slide-subtitle">Join Our Growth Journey</p>
+                </div>
+                <div class="slide-content">
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="display: inline-block; padding: 2rem; background: var(--gradient-primary); color: white; border-radius: 12px;">
+                            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">$50M Series B</h2>
+                            <p style="font-size: 1.2rem; opacity: 0.9;">Valuation: $500M</p>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3 style="color: var(--electric-blue); margin-bottom: 0.5rem;">Use of Funds</h3>
+                            <ul style="list-style: none; padding: 0; color: var(--slate-blue);">
+                                <li>• Platform Development (40%)</li>
+                                <li>• Market Expansion (30%)</li>
+                                <li>• Team Growth (20%)</li>
+                                <li>• Working Capital (10%)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h3 style="color: var(--electric-blue); margin-bottom: 0.5rem;">Expected ROI</h3>
+                            <ul style="list-style: none; padding: 0; color: var(--slate-blue);">
+                                <li>• 3-5x in 3-5 years</li>
+                                <li>• IPO potential 2027</li>
+                                <li>• Secondary market opportunities</li>
+                                <li>• Projections based on 30% CAGR</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deck-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">Thank You</h1>
+                    <p class="slide-subtitle">Let's Build the Future Together</p>
+                </div>
+                <div class="slide-content">
+                    <div style="text-align: center; margin: 3rem 0;">
+                        <div style="width: 120px; height: 120px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 3rem; color: white; font-weight: bold;">N</div>
+                        <h2 style="margin-top: 2rem; color: var(--deep-navy);">Nexus Capital</h2>
+                        <p style="color: var(--slate-blue); margin-top: 1rem;">Connecting Innovation with Strategic Capital</p>
+                        <button class="btn btn-primary" style="margin-top: 2rem;" onclick="showToast('Thank you for your interest! Our team will contact you soon.')">
+                            <i class="fas fa-calendar"></i> Schedule Follow-up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-icon">N</div>
+                <span>Nexus Capital</span>
+            </div>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">Connecting Innovation with Strategic Capital</p>
+            <div class="footer-links">
+                <a href="#guidelines">Brand Guidelines</a>
+                <a href="#brochure">Brochure</a>
+                <a href="#pitchdeck">Pitch Deck</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">© 2025 Nexus Capital. All rights reserved By Zannatul.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle toast-icon"></i>
+            <span id="toastMessage">Message</span>
+        </div>
+    </div>
+
+    <script>
+        // Initialize
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.deck-slide');
+        const totalSlides = slides.length;
+        
+        // Update total slides display
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        // Hide loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navigation functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            document.getElementById('currentSlide').textContent = index + 1;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Brochure page navigation
+        function showBrochurePage(pageIndex) {
+            const pages = document.querySelectorAll('.brochure-page');
+            const buttons = document.querySelectorAll('.brochure-btn');
+            
+            pages.forEach(page => page.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            pages[pageIndex].classList.add('active');
+            buttons[pageIndex].classList.add('active');
+        }
+
+        // Copy color to clipboard
+        function copyColor(color) {
+            navigator.clipboard.writeText(color);
+            showToast(`Color ${color} copied to clipboard!`);
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Download assets (simulation)
+        function downloadAssets() {
+            showToast('Asset package download started! Check your downloads folder.');
+            // In a real implementation, this would trigger actual file downloads
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = 'var(--shadow-md)';
+            } else {
+                nav.style.boxShadow = 'var(--shadow-sm)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.guideline-card, .feature-card, .team-member, .portfolio-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
+</html>
